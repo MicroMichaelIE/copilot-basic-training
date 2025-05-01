@@ -1,0 +1,27 @@
+# git ignore for npm react project
+# dependencies
+node_modules
+# build
+build
+dist
+.env
+
+
+
+# git ignore for python django project
+# dependencies
+__pycache__
+*.py[cod]
+# build
+build
+dist
+# virtual environment
+venv
+# pyenv
+.python-version
+# pyenv-virtualenv
+.venv
+# mypy
+.mypy_cache
+# pytype
+.pytype

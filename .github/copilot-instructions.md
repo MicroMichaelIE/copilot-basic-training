@@ -14,3 +14,5 @@
 3. Implement proper exception handling with custom exception classes
 4. Structure Django models with clear relationships and field types
 5. Follow Django's class-based views pattern when applicable
+
+VERY IMPORTANT: we use a virtual environment for Python development. This should usable via python and pip. python3 and pip3 are the system default and should be avoided. If pip doesn't exist, you can active the environment with `source venv/bin/activate.fish` and then use pip.

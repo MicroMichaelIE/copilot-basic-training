@@ -1,34 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
+import { CatList } from './components/CatList';
+import { CatForm } from './components/CatForm';
+import { Cat, CatCreateInput } from './types/cat';
+import { CatService } from './services/catService';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cats, setCats] = useState<Cat[]>([]);
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadCats();
+  }, []);
+
+  const loadCats = async () => {
+    try {
+      const fetchedCats = await CatService.getAllCats();
+      setCats(fetchedCats);
+      setError('');
+    } catch (err) {
+      setError('Failed to load cats');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddCat = async (catData: CatCreateInput) => {
+    try {
+      const newCat = await CatService.createCat(catData);
+      setCats([...cats, newCat]);
+      setError('');
+    } catch (err) {
+      setError('Failed to add new cat');
+      console.error(err);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <h1>Cat Management System</h1>
+      {error && <div className="error">{error}</div>}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <CatForm onSubmit={handleAddCat} />
+          <CatList cats={cats} />
+        </>
+      )}
+    </div>
   )
 }
 

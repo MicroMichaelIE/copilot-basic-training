@@ -2,20 +2,72 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.app {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.cat-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.cat-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.cat-form div {
+  margin-bottom: 1rem;
+}
+
+.cat-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.cat-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.cat-form button {
+  background-color: #646cff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cat-form button:hover {
+  background-color: #535bf2;
+}
+
+.error {
+  color: red;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color: #fff5f5;
 }
 
 @keyframes logo-spin {
